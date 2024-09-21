@@ -20,7 +20,7 @@ class TaskList(models.Model):
     difficulty = models.CharField(max_length = 3, choices = get_difficulty)
     
 
-class TaskToUser(models.Model):
+class TaskToUsers(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     task = models.ForeignKey(TaskList, on_delete = models.CASCADE)
     open_date = models.DateField("Open date", auto_now=True)
