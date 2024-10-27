@@ -7,22 +7,15 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 # Create your views here.
 
-from .serializers import UserTaskSerializer, UserSerializer
+from .serializers import UserTaskSerializer
 from .models import TaskToUser
 
-@api_view(['GET'])
+@api_view(['POST'])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def task_list(request):
     user = request.user
-    user_serializer = UserSerializer(user)
-    
     user_tasks = TaskToUser.objects.filter(user = user)
-    task_serializer = UserTaskSerializer(user_tasks, many = True)
+    seralizer = UserTaskSerializer(user_tasks, many = True)
     
-    response_data = {
-        "user": user_serializer.data,  # Los datos del usuario se devuelven una sola vez
-        "tasks": task_serializer.data   # La lista de tareas asociadas
-    }
-    
-    return Response(response_data, status=status.HTTP_200_OK)
+    return Response(seralizer.data, status=status.HTTP_200_OK)

@@ -2,4 +2,3 @@ venv
 __pycache__
 db.sqlite2
 local.py
-migrations

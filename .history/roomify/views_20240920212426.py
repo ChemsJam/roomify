@@ -9,7 +9,10 @@ from rest_framework.authentication import TokenAuthentication
 from .serialzers import UserSerializer
 
 from django.contrib.auth.models import User
+from applications.tasks.models import TaskToUser
 from django.shortcuts import get_object_or_404
+
+
 
 @api_view(['POST'])
 def login(request):
@@ -33,7 +36,6 @@ def register(request):
         serializer.save()
         
         user = User.objects.get(username=serializer.data['username'])
-        user.set_password(serializer.data['email'])
         user.set_password(serializer.data['password'])
         user.save()
         
@@ -49,6 +51,6 @@ def register(request):
 def profile(request):
     
     print(request.user)
-    
-    return Response("You are login with {}".format(request.user.username),
+        
+    return Response("Your tasks are {}".format(request.user.username),
                      status=status.HTTP_200_OK)

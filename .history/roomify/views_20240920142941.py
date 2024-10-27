@@ -6,10 +6,12 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 
-from .serialzers import UserSerializer
+from .serializers import UserSerializer
 
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+
+
 
 @api_view(['POST'])
 def login(request):
@@ -33,7 +35,6 @@ def register(request):
         serializer.save()
         
         user = User.objects.get(username=serializer.data['username'])
-        user.set_password(serializer.data['email'])
         user.set_password(serializer.data['password'])
         user.save()
         

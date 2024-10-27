@@ -23,5 +23,5 @@ urlpatterns = [
     re_path('login', views.login),
     re_path('register', views.register),
     re_path('profile', views.profile),
-    re_path('api/', include('applications.tasks.urls'))
+    re_path('api/', include('tasks.urls'))
 ]

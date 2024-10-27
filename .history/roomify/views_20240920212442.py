@@ -11,6 +11,8 @@ from .serialzers import UserSerializer
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
+
+
 @api_view(['POST'])
 def login(request):
     print(request.data)
@@ -33,7 +35,6 @@ def register(request):
         serializer.save()
         
         user = User.objects.get(username=serializer.data['username'])
-        user.set_password(serializer.data['email'])
         user.set_password(serializer.data['password'])
         user.save()
         
