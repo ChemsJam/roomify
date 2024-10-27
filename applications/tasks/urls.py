@@ -1,5 +1,5 @@
 """
-URL configuration for roomify project.
+URL configuration for django_rest_tokens project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -14,13 +14,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+
+from django.urls import re_path
 from . import views
-from django.urls import path, re_path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    re_path('login', views.login),
-    re_path('register', views.register),
-    path('tasks/', include("tasks.urls"))
+    re_path('', views.tasks),
+    re_path('createTask', views.createTask),
+    re_path('cancelTask', views.cancelTask),
+    re_path('tradeTask', views.tradeTask),
+    re_path('completeTask', views.completeTask)
 ]
