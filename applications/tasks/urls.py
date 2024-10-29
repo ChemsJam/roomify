@@ -1,27 +1,12 @@
-"""
-URL configuration for django_rest_tokens project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-
-from django.urls import re_path
-from . import views
+# En el archivo urls.py de la app (por ejemplo, "tasks/urls.py")
+from django.urls import path
+from .views import task_list, task_create  # Importamos la vista task_list
 
 urlpatterns = [
-    re_path('', views.tasks),
-    re_path('createTask', views.createTask),
-    re_path('cancelTask', views.cancelTask),
-    re_path('tradeTask', views.tradeTask),
-    re_path('completeTask', views.completeTask)
+    path('tasks/', task_list, name='task-list'),
+    path('createTask/', task_create, name='task-create'),
+    path('assignTask/', task_list, name='task-list'),
+    path('cancelTask/', task_list, name='task-list'),
+    path('tradeTask/', task_list, name='task-list'),
+    path('completeTask/', task_list, name='task-list'),
 ]

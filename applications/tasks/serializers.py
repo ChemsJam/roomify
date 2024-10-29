@@ -19,3 +19,4 @@ class UserTaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = TaskToUser
         fields = ['id', 'task', 'open_date', 'complete_date', 'status']
+        

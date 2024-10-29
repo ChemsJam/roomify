@@ -26,14 +26,12 @@ def login(request):
 
 @api_view(['POST'])
 def register(request):
-    print(request.data)
     serializer = UserSerializer(data=request.data)
     
     if serializer.is_valid():
         serializer.save()
         
         user = User.objects.get(username=serializer.data['username'])
-        user.set_password(serializer.data['email'])
         user.set_password(serializer.data['password'])
         user.save()
         
